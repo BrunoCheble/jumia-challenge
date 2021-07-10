@@ -1,4 +1,4 @@
-import { getRepository, Repository, Raw } from 'typeorm';
+import { getRepository, Repository, Like } from 'typeorm';
 import ICustomersRepository from './ICustomersRepository';
 import IFindAllCustomerByCountryDTO from '../../../dtos/IFindAllCustomerByCountryDTO';
 import Customer from '../entities/Customer';
@@ -11,20 +11,13 @@ class CustomersRepository implements ICustomersRepository {
   }
 
   public async findAll(): Promise<Customer[]> {
-    
-    const findCustomers = await this.ormRepository.find();
-    return findCustomers;
+    return await this.ormRepository.find({ cache: true });
   }
 
   public async findAllByCountry({
     country_code
   }: IFindAllCustomerByCountryDTO): Promise<Customer[]> {
-    
-    const findCustomers = await this.ormRepository.find({
-      where: `phone like '(${country_code})%'`
-    });
-    
-    return findCustomers;
+    return await this.ormRepository.find({ phone: Like(`(${country_code})%`) });
   }
 }
 

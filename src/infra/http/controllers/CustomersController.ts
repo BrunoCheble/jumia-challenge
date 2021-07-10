@@ -7,7 +7,6 @@ import ListCustomers from '../../../services/ListCustomers';
 export default class CustomersController {
   public async list(request: Request, response: Response): Promise<Response> {
     const { country_code, valid_phone, page } = request.params;
-    
     const listCustomerService = container.resolve(ListCustomers);
 
     const customers = await listCustomerService.execute({
