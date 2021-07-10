@@ -1,0 +1,11 @@
+[
+  {
+    "type": "sqlite",
+    "database": "sample.db",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "./src/infra/typeorm/entities/*.ts"
+    ]
+  }
+]

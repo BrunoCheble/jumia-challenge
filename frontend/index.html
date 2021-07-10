@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="display-1">Phone numbers</h1>
+    <div style="margin-top: 1em; margin-bottom: 1em;" class="row">
+      <div class="col">
+        <select name="country" class="form-select" aria-label="Select Country" id="country">
+          <option value="0">All countries</option>
+        </select>
+      </div>
+      <div class="col">
+        <select name="status" class="form-select" aria-label="Valid phone number" id="status">
+          <option value="2">All phones</option>
+          <option value="1">Only Valid</option>
+          <option value="0">Only Invalid</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped ta">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>State</th>
+            <th>Country code</th>
+            <th>Phone num.</th>
+          </tr>
+        </thead>
+        <tbody id="phones"></tbody>
+      </table>
+    </div>
+    
+    <div class="d-flex justify-content-end">
+      <button id="prev_table" class="btn btn-default"><i class="bi bi-arrow-left-circle-fill"></i> Prev</button>
+      <button id="next_table" class="btn btn-primary">Next <i class="bi bi-arrow-right-circle-fill"></i></button>
+    </div>
+  </div>
+</body>
+<script src="main.js"></script>
+</html>
