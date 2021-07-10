@@ -6,6 +6,9 @@ Instalação do backend:
 Inicialização do backend:
 - yarn start
 
+Execução dos tests:
+- yarn test
+
 URL da API: http://localhost:3333/customers/list/COUNTRY_CODE/VALID_PHONE/PAGINATE
 
 - COUNTRY_CODE = '0' // Busca de todos os países
