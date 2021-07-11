@@ -55,7 +55,7 @@ class ListCustomersService {
       }
 
       const country_code = customer.phone.substring(1, customer.phone.indexOf(')'));
-      const valid = this.phoneValidatorProvider.validate({ country_code, phone: customer.phone });
+      let valid = this.phoneValidatorProvider.validate({ country_code, phone: customer.phone });
 
       const is_all = valid_phone === this.all_phones_status;
       const just_valid = valid_phone === this.valid_phone && valid;

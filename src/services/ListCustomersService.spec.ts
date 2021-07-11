@@ -20,6 +20,7 @@ describe('ListCustomersService', () => {
   it('should be able to list valid phones', async () => {
     
     customersRepository.create('(212) 698054317');
+    customersRepository.create('(212) 84330678235');
     
     const phone1 = {
       country_code: '212',
@@ -39,6 +40,7 @@ describe('ListCustomersService', () => {
   it('should be able to list invalid phones', async () => {
     
     customersRepository.create('(258) 84330678235');
+    customersRepository.create('(212) 698054317');
     
     const phone1 = {
       country_code: '258',
@@ -56,6 +58,12 @@ describe('ListCustomersService', () => {
   });
 
   it('should be able to list all phones', async () => {
+    
+    customersRepository.create('(212) 698054311');
+    customersRepository.create('(212) 698054311');
+    customersRepository.create('(212) 698054313');
+    customersRepository.create('(212) 698054314');
+    customersRepository.create('(212) 698054314');
     
     customersRepository.create('(212) 698054317');
     customersRepository.create('(258) 84330678235');
@@ -75,9 +83,20 @@ describe('ListCustomersService', () => {
     const phones = await listCustomers.execute({
       country_code: '0',
       valid_phone: '2',
-      paginate_number: 1
+      paginate_number: 2
     });
 
     expect(phones).toEqual([phone1, phone2]);
+  });
+
+  it('should be able to list empty', async () => {
+    
+    const phones = await listCustomers.execute({
+      country_code: '123',
+      valid_phone: '2',
+      paginate_number: 1
+    });
+
+    expect(phones).toEqual([]);
   });
 });
