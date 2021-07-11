@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import ListCustomersService from './ListCustomers';
-import FakeCustomersRepository from '../repositories/fakes/FakeCustomersRepository';
+import FakeCustomersRepository from '../repositories/fake/FakeCustomersRepository';
 import PhoneValidatorProvider from '../providers/PhoneValidator/implementations/PhoneValidatorProvider';
 
 let phoneValidatorProvider: PhoneValidatorProvider;
@@ -57,7 +57,7 @@ describe('ListCustomersService', () => {
     expect(phones).toEqual([phone1]);
   });
 
-  it('should be able to list all phones', async () => {
+  it('should be able to list all phones on 2th page', async () => {
     
     customersRepository.create('(212) 698054311');
     customersRepository.create('(212) 698054311');
@@ -65,18 +65,42 @@ describe('ListCustomersService', () => {
     customersRepository.create('(212) 698054314');
     customersRepository.create('(212) 698054314');
     
+    customersRepository.create('(212) 698054315');
+    customersRepository.create('(212) 698054316');
+    customersRepository.create('(212) 698054317');
+    customersRepository.create('(212) 698054318');
+    customersRepository.create('(245) 12345');
+    
     customersRepository.create('(212) 698054317');
     customersRepository.create('(258) 84330678235');
     
     const phone1 = {
       country_code: '212',
-      phone: '(212) 698054317',
+      phone: '(212) 698054315',
       valid: true
     };
 
     const phone2 = {
-      country_code: '258',
-      phone: '(258) 84330678235',
+      country_code: '212',
+      phone: '(212) 698054316',
+      valid: true
+    };
+
+    const phone3 = {
+      country_code: '212',
+      phone: '(212) 698054317',
+      valid: true
+    };
+
+    const phone4 = {
+      country_code: '212',
+      phone: '(212) 698054318',
+      valid: true
+    };
+
+    const phone5 = {
+      country_code: '245',
+      phone: '(245) 12345',
       valid: false
     };
 
@@ -86,7 +110,7 @@ describe('ListCustomersService', () => {
       paginate_number: 2
     });
 
-    expect(phones).toEqual([phone1, phone2]);
+    expect(phones).toEqual([phone1, phone2, phone3, phone4, phone5]);
   });
 
   it('should be able to list empty', async () => {
